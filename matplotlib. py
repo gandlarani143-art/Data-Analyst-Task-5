@@ -1,0 +1,53 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create Titanic Sample Dataset
+data = {
+    "Name": ["Rani", "Rahul", "Sita", "John", "Priya", "Arun"],
+    "Age": [21, 25, 22, 30, 19, 28],
+    "Sex": ["female", "male", "female", "male", "female", "male"],
+    "Fare": [50, 20, 60, 15, 80, 25],
+    "Survived": [1, 0, 1, 0, 1, 0]
+}
+
+df = pd.DataFrame(data)
+
+print("TITANIC DATASET")
+print(df.head())
+
+print("\nDataset Information:")
+print(df.info())
+
+print("\nStatistical Summary:")
+print(df.describe())
+
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+print("\nSurvival Count:")
+print(df["Survived"].value_counts())
+
+print("\nGender Count:")
+print(df["Sex"].value_counts())
+
+print("\nCorrelation:")
+print(df[["Age", "Fare", "Survived"]].corr())
+
+# Graph 1
+df["Survived"].value_counts().plot(kind="bar")
+plt.title("Survival Count")
+plt.savefig("survival.png")
+plt.show()
+plt.close()
+
+# Graph 2
+df["Age"].plot(kind="hist")
+plt.title("Age Distribution")
+plt.savefig("age.png")
+plt.show()
+plt.close()
+
+# Save Dataset
+df.to_csv("titanic_cleaned.csv", index=False)
+
+print("\nEDA TASK COMPLETED SUCCESSFULLY!")
